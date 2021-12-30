@@ -15,7 +15,7 @@ jobs:
         go-version: 1.16.x
 
     - name: Build
-      run: pwd && ls -alt && cd "${GIT_BRANCH_NAME}" && go build .
+      run: pwd && ls -alt && cd hw07_01 && go build .
 
     - name: Test
-      run:  pwd && ls -alt && cd "${GIT_BRANCH_NAME}" && go test .
+      run:  pwd && ls -alt && cd hw07_01 && go test .
