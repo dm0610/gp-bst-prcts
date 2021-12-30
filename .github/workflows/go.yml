@@ -15,7 +15,7 @@ jobs:
         go-version: 1.16.x
 
     - name: Build
-      run: ls -alt && cd $GITHUB_REF && go build .
+      run: pwd && ls -alt && cd $GITHUB_REF && go build .
 
     - name: Test
-      run:  ls -alt && cd $GITHUB_REF && go test .
+      run:  pwd && ls -alt && cd $GITHUB_REF && go test .
