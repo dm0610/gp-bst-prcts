@@ -4,7 +4,7 @@ on: [ push, pull_request ]
 
 jobs:
 
-  build:
+  build_test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -12,10 +12,19 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16.x
+        go-version: 1.17.x
 
     - name: Build
-      run: pwd && ls -alt && cd $GITHUB_HEAD_REF  && go build .
+      run: cd $GITHUB_HEAD_REF  && go build .
 
     - name: Test
-      run:  pwd && ls -alt && cd $GITHUB_HEAD_REF  && go test .
+      run:  cd $GITHUB_HEAD_REF  && go test .
+
+  lint:
+    runs-on: golangci/golangci-lint:v1.43.0
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: Lint
+      run: cd $GITHUB_HEAD_REF  && golangci-lint run -v
